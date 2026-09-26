@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppSelect } from '@/shared/components/ui';
+import { AppInput, AppSelect } from '@/shared/components/ui';
 import { useIncidentsStore } from '../store';
 
 const incidentsStore = useIncidentsStore();
@@ -14,16 +14,12 @@ const incidentsStore = useIncidentsStore();
       @select-option="incidentsStore.handleIncidentsStatusSelect"
     />
 
-    <div class="app-input-field">
-      <label class="app-input-label" for="incidents-search">Поиск</label>
-      <input
-        v-model="incidentsStore.incidentsQuery"
-        id="incidents-search"
-        type="text"
-        class="app-input"
-        placeholder="Поиск по заголовку или сервису"
-      />
-    </div>
+    <AppInput
+      label="Поиск"
+      id="incidents-search"
+      placeholder="Поиск по заголовку или сервису"
+      v-model="incidentsStore.incidentsQuery"
+    />
 
     <AppSelect
       size="m"

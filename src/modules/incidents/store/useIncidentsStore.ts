@@ -6,7 +6,7 @@ import type {
   IncidentStatus,
   IncidentType,
 } from '@/shared/domain';
-import { STATUSES } from '@/shared/consts';
+import { STATUSES, statusesList } from '@/shared/consts';
 import { getOptionsListFromRecord, type AppSelectOption } from '@/shared/components/ui';
 import { incidentsService } from '../services/IncidentsService';
 import { parseIncidentDate } from '../components/helpers/parseIncidentDate';
@@ -29,8 +29,6 @@ const PRIORITY_ORDER: Record<IncidentPriority, number> = {
   medium: 2,
   low: 3,
 };
-
-const incidentsStatusesList = getOptionsListFromRecord(STATUSES);
 
 let lastIncidentsRequestId = 0; // Защита от race condition загрузки/обновления списка инцидентов
 let incidentsFailureCounter = 0;
@@ -61,7 +59,7 @@ export const useIncidentsStore = defineStore('incidents', () => {
   });
 
   const currentIncidentSelectedOption = computed(() =>
-    incidentsStatusesList.find((option) => incidentSelected.value?.status === option.id),
+    statusesList.find((option) => incidentSelected.value?.status === option.id),
   );
 
   const incidentsFilteredList = computed<IncidentType[]>(() => {
@@ -225,7 +223,6 @@ export const useIncidentsStore = defineStore('incidents', () => {
     incidentsSortingOptionsList,
     incidentsStatusesOptionsList,
     currentIncidentSelectedOption,
-    incidentsStatusesList,
     incidentsError,
     initIncidentsList,
     updateIncidentsList,

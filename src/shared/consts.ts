@@ -1,3 +1,4 @@
+import { getOptionsListFromRecord } from './components/ui';
 import type { IncidentPriority, IncidentStatus } from './domain';
 
 export type AppTagColors = {
@@ -11,6 +12,7 @@ export const PRIORITIES: Record<IncidentPriority, string> = {
   medium: 'Средний',
   low: 'Низкий',
 };
+export const prioritiesList = getOptionsListFromRecord(PRIORITIES);
 
 export const STATUSES: Record<IncidentStatus, string> = {
   'in-progress': 'В работе',
@@ -19,6 +21,34 @@ export const STATUSES: Record<IncidentStatus, string> = {
   new: 'Новый',
   solved: 'Решён',
 };
+export const statusesList = getOptionsListFromRecord(STATUSES);
+
+export const USERS: Record<string, string> = {
+  'anna-smirnova': 'Анна Смирнова',
+  'ivan-kuznetsov': 'Иван Кузнецов',
+  'maria-orlova': 'Мария Орлова',
+  'petr-volkov': 'Пётр Волков',
+  'elena-novikova': 'Елена Новикова',
+  'sergey-morozov': 'Сергей Морозов',
+  'olga-belova': 'Ольга Белова',
+  'dmitry-sokolov': 'Дмитрий Соколов',
+  'alexey-pavlov': 'Алексей Павлов',
+};
+export const usersList = getOptionsListFromRecord(USERS);
+
+export const SERVICES: Record<string, string> = {
+  checkout: 'Оформление',
+  payments: 'Платежи',
+  accounts: 'Аккаунты',
+  notifications: 'Уведомления',
+  auth: 'Аутентификация',
+  search: 'Поиск',
+  warehouse: 'Склад',
+  cart: 'Корзина',
+  cdn: 'CDN',
+  observability: 'Observability',
+};
+export const servicesList = getOptionsListFromRecord(SERVICES);
 
 export const PRIORITY_TAG_COLORS: Record<IncidentPriority, AppTagColors> = {
   critical: { backgroundColor: '#fee2e2', textColor: '#b91c1c' },

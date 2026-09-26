@@ -9,24 +9,20 @@ const incidentsStore = useIncidentsStore();
     <AppSelect
       size="m"
       label="Статус"
+      v-model="incidentsStore.incidentStatusSelected"
       :options="incidentsStore.incidentsStatusesOptionsList"
-      :selected-option="incidentsStore.incidentStatusSelected"
-      @select-option="incidentsStore.handleIncidentsStatusSelect"
     />
-
     <AppInput
       label="Поиск"
       id="incidents-search"
       placeholder="Поиск по заголовку или сервису"
       v-model="incidentsStore.incidentsQuery"
     />
-
     <AppSelect
       size="m"
       label="Сортировка"
+      v-model="incidentsStore.incidentSortingSelected"
       :options="incidentsStore.incidentsSortingOptionsList"
-      :selected-option="incidentsStore.incidentSortingSelected"
-      @select-option="incidentsStore.handleIncidentsSortingSelect"
     />
   </section>
 </template>

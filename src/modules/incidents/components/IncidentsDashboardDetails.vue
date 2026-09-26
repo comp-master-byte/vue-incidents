@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AppSelect } from '@/shared/components/ui';
 import { useIncidentsStore } from '../store';
-import { PRIORITIES } from '@/shared/consts';
+import { PRIORITIES, statusesList } from '@/shared/consts';
 
 const incidentsStore = useIncidentsStore();
 </script>
@@ -57,9 +57,8 @@ const incidentsStore = useIncidentsStore();
     <AppSelect
       size="fit-content"
       label="Статус"
-      :options="incidentsStore.incidentsStatusesList"
-      :onSelectOption="incidentsStore.handleChangeIncidentStatus"
-      :selected-option="incidentsStore.currentIncidentSelectedOption!"
+      :options="statusesList"
+      v-model="incidentsStore.currentIncidentSelectedOption!"
     />
   </section>
 </template>

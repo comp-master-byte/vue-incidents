@@ -8,12 +8,14 @@ export type AppSelectOption = {
 type AppSelectProps = {
   label?: string;
   options: AppSelectOption[];
-  selectedOption: AppSelectOption;
-  onSelectOption: (option: AppSelectOption) => void;
   size?: 's' | 'm' | 'l' | 'fit-content';
+  modelValue: AppSelectOption | null;
 };
 
-const { selectedOption, label, options, onSelectOption, size } = defineProps<AppSelectProps>();
+defineProps<AppSelectProps>();
+const emit = defineEmits<{
+  'update:modelValue': [value: AppSelectOption];
+}>();
 
 const rootRef = ref<HTMLElement | null>(null);
 const isSelectOptionsVisible = ref(false);
@@ -24,7 +26,7 @@ function toggleSelectOptionsVisibility() {
 
 function handleSelectOption(option: AppSelectOption) {
   isSelectOptionsVisible.value = false;
-  onSelectOption(option);
+  emit('update:modelValue', option);
 }
 
 function handleDocumentPointerDown(event: PointerEvent) {
@@ -54,7 +56,7 @@ onBeforeUnmount(() => {
       :class="{ 'app-select__button--open': isSelectOptionsVisible }"
       @click="toggleSelectOptionsVisibility"
     >
-      <span class="app-select__value">{{ selectedOption?.label }}</span>
+      <span class="app-select__value">{{ modelValue?.label || 'Выберите значение' }}</span>
       <svg
         class="app-select__chevron"
         :class="{ 'app-select__chevron--open': isSelectOptionsVisible }"
